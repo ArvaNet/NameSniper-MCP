@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "pro.namesniper/namesniper",
+  "title": "NameSniper",
+  "description": "Check domain and social handle availability, and monitor taken handles to grab them when they drop.",
+  "version": "1.0.0",
+  "websiteUrl": "https://namesniper.pro",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://namesniper.pro/mcp"
+    }
+  ],
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "namesniper-mcp",
+      "version": "1.0.0",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

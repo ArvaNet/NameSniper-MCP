@@ -1,0 +1,8 @@
+node_modules/
+*.log
+.DS_Store
+
+# Registry auth material - never commit these
+key.pem
+mcp-registry-auth
+.mcp_publisher_token

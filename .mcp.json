@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "namesniper": {
+      "command": "npx",
+      "args": ["-y", "namesniper-mcp"]
+    }
+  }
+}

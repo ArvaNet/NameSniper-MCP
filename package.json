@@ -1,0 +1,43 @@
+{
+  "name": "namesniper-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for NameSniper: check domain and social handle availability across the major social platforms, generate names, screen trademarks, and monitor taken handles to grab them the moment they free up.",
+  "mcpName": "pro.namesniper/namesniper",
+  "type": "module",
+  "bin": {
+    "namesniper-mcp": "bin/cli.mjs"
+  },
+  "files": [
+    "bin",
+    "server.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "mcp-remote": "^0.1.38"
+  },
+  "keywords": [
+    "mcp",
+    "modelcontextprotocol",
+    "model-context-protocol",
+    "namesniper",
+    "domain-availability",
+    "username-availability",
+    "social-handles",
+    "brand-name",
+    "ai-name-generator",
+    "trademark"
+  ],
+  "homepage": "https://namesniper.pro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArvaNet/NameSniper-MCP.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ArvaNet/NameSniper-MCP/issues"
+  },
+  "license": "MIT"
+}
