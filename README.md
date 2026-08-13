@@ -5,9 +5,9 @@
 [![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg)](https://nodejs.org)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-server-blue.svg)](https://modelcontextprotocol.io)
 
-NameSniper checks brand name, domain, and social handle availability across all the major social platforms, generates AI name ideas, and screens trademarks for conflicts. It also keeps watching taken usernames and alerts you the moment one frees up or drops, so you can claim a handle before anyone else. All from your AI client - Claude, Cursor, or any MCP host.
+NameSniper monitors taken usernames and alerts you the moment one frees up or drops, so you can claim a handle before anyone else. It also checks live handle availability across all the major social platforms, checks domains across popular TLDs, and screens names for trademark conflicts. All from your AI client - Claude, Cursor, or any MCP host.
 
-The server runs remotely at `https://namesniper.pro/mcp` (Streamable HTTP). Checking and alternatives are free and need no account; AI generation, trademark screening, and handle monitoring need a NameSniper API key (Pro or Business plan).
+The server runs remotely at `https://namesniper.pro/mcp` (Streamable HTTP). Checking and alternatives are free and need no account; name generation, trademark screening, and handle monitoring need a NameSniper API key (Pro or Business plan).
 
 ## Handle monitoring
 

@@ -1,7 +1,7 @@
 {
   "name": "namesniper-mcp",
-  "version": "1.1.0",
-  "description": "MCP server for NameSniper: check domain and social handle availability across the major social platforms, generate names, screen trademarks, and monitor taken handles to grab them the moment they free up.",
+  "version": "1.1.1",
+  "description": "MCP server for NameSniper: monitor taken usernames and get alerted the moment they free up or drop, check handle and domain availability across the major social platforms and TLDs, and screen names for trademark conflicts.",
   "mcpName": "pro.namesniper/namesniper",
   "type": "module",
   "bin": {
