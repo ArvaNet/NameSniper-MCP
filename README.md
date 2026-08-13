@@ -68,6 +68,8 @@ Config file locations:
 | `namesniper_check_domains` | Domain availability across TLDs | Free |
 | `namesniper_check_social` | Username availability across platforms | Free |
 | `namesniper_alternatives` | Brand name variations and creative patterns | Free |
+| `namesniper_telegram_price` | Telegram username market history: peak/latest sale in TON, live auction state, from public TON blockchain records | Free |
+| `namesniper_roblox_rarity` | Roblox username rarity rating (Common to Legendary) from measured namespace data, with live availability | Free |
 | `namesniper_generate` | AI brand name generation from a description | Required |
 | `namesniper_trademark` | USPTO trademark conflict screening | Required |
 | `namesniper_watch` | Start monitoring a handle and get notified when it frees up | Required |
