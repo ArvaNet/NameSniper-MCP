@@ -31,7 +31,7 @@
   "tools": [
     {
       "name": "namesniper_check",
-      "description": "Check brand name availability across domains and social media platforms, with brand score and trademark analysis. Without an API key, trademark screening is skipped and Instagram/TikTok/X return best-effort HTTP confidence; a paid API key unlocks verified accuracy on those platforms plus trademark screening.",
+      "description": "All-in-one brand name check: domain availability across TLDs, username availability across the major social platforms, an optional 0-100 brand score, and USPTO trademark screening. Returns JSON with per-TLD and per-platform results (each with an availability verdict and 0-1 confidence), availability summaries, brandScore, and trademark risk. Use namesniper_check_domains or namesniper_check_social instead when only one dimension is needed. Free without an API key (rate-limited; trademark is skipped and Instagram/TikTok/X return best-effort HTTP confidence); a paid key unlocks verified accuracy on those platforms plus trademark screening.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -73,7 +73,7 @@
     },
     {
       "name": "namesniper_check_domains",
-      "description": "Check domain name availability across multiple TLDs",
+      "description": "Check whether a domain name is registered across multiple TLDs using DNS lookups with a registry-data fallback. Returns JSON with per-TLD results (available true/false with a 0-1 confidence score) and an available/taken summary. Faster and narrower than namesniper_check when social handles are not needed. Free, rate-limited.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -100,7 +100,7 @@
     },
     {
       "name": "namesniper_check_social",
-      "description": "Check username availability across social media platforms. Without an API key, Instagram, TikTok, and X/Twitter return best-effort HTTP confidence; a paid API key unlocks verified accuracy on those platforms. Each result includes a confidence score (0-1).",
+      "description": "Check username availability across the major social platforms concurrently. Returns JSON with per-platform results (status available/taken/error with a 0-1 confidence score) and an available/taken summary. Narrower than namesniper_check when domains are not needed; if a wanted handle is taken, offer namesniper_watch. Free and rate-limited without an API key (Instagram, TikTok, and X/Twitter return best-effort HTTP confidence); a paid key unlocks verified accuracy on those three.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -127,7 +127,7 @@
     },
     {
       "name": "namesniper_generate",
-      "description": "Generate brand name suggestions using AI based on a business description",
+      "description": "Generate new brand name ideas with AI from a business or project description, each enriched with a live .com availability check. Non-deterministic: repeated calls produce different names (identical requests are served from a 24-hour cache and flagged with cached: true). Typical latency 5-30 seconds. Returns JSON names[] with the name, an explanation, tags, a confidence score, and comAvailable. Requires an API key (paid plan) and counts against a daily generation quota. To riff on a name the user already has, use namesniper_alternatives instead (free, deterministic).",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -155,7 +155,7 @@
     },
     {
       "name": "namesniper_trademark",
-      "description": "Screen a brand name for trademark conflicts via USPTO database",
+      "description": "Screen a brand name for US trademark conflicts against the USPTO database with similarity analysis. Returns JSON with matching marks and a summary including an overall risk rating; with includeVariations, common spelling variations are screened too (slower, more lookups). A screening aid, not legal advice. Requires an API key (paid plan).",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -179,7 +179,7 @@
     },
     {
       "name": "namesniper_alternatives",
-      "description": "Generate alternative brand name variations with prefixes, suffixes, and creative patterns",
+      "description": "Generate variations of an existing brand name using deterministic prefix, suffix, compound, and wordplay patterns. Returns JSON alternatives[] each with the name, the pattern used, a description, and a 0-100 brandability score. Use this to riff on a name the user already has; use namesniper_generate for brand-new AI ideas from a description. Free, no API key needed.",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -203,7 +203,7 @@
     },
     {
       "name": "namesniper_watch",
-      "description": "Start monitoring a username across platforms and get notified the moment it frees up or drops, so the user can claim it before anyone else. Requires a paid API key (Pro or Business).",
+      "description": "Start monitoring a taken username so the user can claim it the moment it frees up or drops. Creates one watch per platform against the plan's slot limit (already-watched pairs are skipped); checks then run automatically on a plan-based schedule and alerts are delivered in-app, by email, and to any configured webhooks. Returns JSON with created watch ids and the skipped count. List watches with namesniper_watches; stop one with namesniper_unwatch. Requires a paid API key (Pro or Business).",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -234,10 +234,39 @@
     },
     {
       "name": "namesniper_watches",
-      "description": "List all currently monitored handles and their status.",
+      "description": "List every handle the account is monitoring. Returns JSON watches[] with id, username, platform, watch status, last observed availability, last-checked and last-changed timestamps, and check count, plus slot usage {used, limit}. Use a watch id with namesniper_unwatch to stop monitoring it. Requires an API key.",
       "inputSchema": {
         "type": "object",
         "properties": {
+          "userId": {
+            "description": "Ignored — derived from your API key",
+            "type": "string"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_unwatch",
+      "description": "Stop monitoring a watched handle and free its slot. Pass the watch id from namesniper_watches, or a username (optionally narrowed to one platform) to remove all its watches. Returns JSON with the removed count and ids. Requires an API key.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "description": "Watch id from namesniper_watches",
+            "type": "string"
+          },
+          "username": {
+            "description": "Remove watches for this username across all platforms unless platform is given",
+            "type": "string"
+          },
+          "platform": {
+            "description": "Limit username-based removal to one platform",
+            "type": "string"
+          },
           "userId": {
             "description": "Ignored — derived from your API key",
             "type": "string"
