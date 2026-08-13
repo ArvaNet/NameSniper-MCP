@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "pro.namesniper/namesniper",
   "title": "NameSniper",
-  "description": "Check domain and social handle availability, and monitor taken handles to grab them when they drop.",
+  "description": "Monitor taken usernames and get alerted when they drop, plus handle, domain, and trademark checks.",
   "version": "1.1.1",
   "websiteUrl": "https://namesniper.pro",
   "remotes": [
@@ -19,6 +19,19 @@
       "transport": {
         "type": "stdio"
       }
+    }
+  ],
+  "repository": {
+    "url": "https://github.com/ArvaNet/NameSniper-MCP",
+    "source": "github"
+  },
+  "icons": [
+    {
+      "src": "https://raw.githubusercontent.com/ArvaNet/NameSniper-MCP/main/logo.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "400x400"
+      ]
     }
   ]
 }
