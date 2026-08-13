@@ -1,0 +1,295 @@
+{
+  "author": "ArvaNet",
+  "authorUrl": "https://github.com/ArvaNet",
+  "cloudEndpoint": "https://namesniper.pro/mcp",
+  "description": "Monitor taken usernames and get alerted the moment they free up or drop, check handle and domain availability across the major social platforms and TLDs, and screen names for trademark conflicts.",
+  "homepage": "https://namesniper.pro",
+  "identifier": "arvanet-namesniper-mcp",
+  "name": "NameSniper",
+  "prompts": [],
+  "resources": [
+    {
+      "name": "pricing",
+      "uri": "namesniper://pricing",
+      "description": "NameSniper plans, prices, and limits"
+    },
+    {
+      "name": "platforms",
+      "uri": "namesniper://platforms",
+      "description": "Supported social media platforms and domain TLDs"
+    }
+  ],
+  "tags": [
+    "username-availability",
+    "handle-monitoring",
+    "username-sniping",
+    "social-handles",
+    "domain-availability",
+    "trademark",
+    "brand-name"
+  ],
+  "tools": [
+    {
+      "name": "namesniper_check",
+      "description": "Check brand name availability across domains and social media platforms, with brand score and trademark analysis. Without an API key, trademark screening is skipped and Instagram/TikTok/X return best-effort HTTP confidence; a paid API key unlocks verified accuracy on those platforms plus trademark screening.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The brand name to check"
+          },
+          "platforms": {
+            "description": "Social platforms to check (default: all supported platforms)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "domains": {
+            "description": "TLDs to check (default: com,org,net,app,dev,tech,io,co,ai)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "brandScore": {
+            "description": "Include brand score analysis (default: true)",
+            "type": "boolean"
+          },
+          "trademark": {
+            "description": "Include trademark screening via USPTO — requires an API key; ignored for unauthenticated callers (default: true when authenticated)",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_check_domains",
+      "description": "Check domain name availability across multiple TLDs",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The domain name to check (without TLD)"
+          },
+          "tlds": {
+            "description": "TLDs to check (default: com,org,net,app,dev,tech,io,co,ai)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_check_social",
+      "description": "Check username availability across social media platforms. Without an API key, Instagram, TikTok, and X/Twitter return best-effort HTTP confidence; a paid API key unlocks verified accuracy on those platforms. Each result includes a confidence score (0-1).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The username to check"
+          },
+          "platforms": {
+            "description": "Platforms to check (default: all supported platforms)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_generate",
+      "description": "Generate brand name suggestions using AI based on a business description",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "description": "Business or project description to generate names for"
+          },
+          "count": {
+            "description": "Number of names to generate (default: 25)",
+            "type": "number"
+          },
+          "style": {
+            "description": "Style: modern, classic, tech, creative, professional, playful, abstract, luxury, minimalist",
+            "type": "string"
+          }
+        },
+        "required": [
+          "description"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_trademark",
+      "description": "Screen a brand name for trademark conflicts via USPTO database",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The brand name to screen"
+          },
+          "includeVariations": {
+            "description": "Check common variations (default: false)",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_alternatives",
+      "description": "Generate alternative brand name variations with prefixes, suffixes, and creative patterns",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The base brand name"
+          },
+          "count": {
+            "description": "Number of alternatives to generate (default: 8)",
+            "type": "number"
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_watch",
+      "description": "Start monitoring a username across platforms and get notified the moment it frees up or drops, so the user can claim it before anyone else. Requires a paid API key (Pro or Business).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The username/handle to watch"
+          },
+          "platforms": {
+            "description": "Platforms to monitor (default: all supported platforms)",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "userId": {
+            "description": "Ignored — derived from your API key",
+            "type": "string"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_watches",
+      "description": "List all currently monitored handles and their status.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "description": "Ignored — derived from your API key",
+            "type": "string"
+          }
+        },
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_telegram_price",
+      "description": "Look up the recorded market price history of a Telegram username: peak and latest on-chain sale (in TON), live auction state, and bid activity, from public TON blockchain records. Free, no API key needed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The Telegram username to look up (without @)"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    },
+    {
+      "name": "namesniper_roblox_rarity",
+      "description": "Rate the rarity of a Roblox username (Common to Legendary, 0-100 score) from measured namespace saturation data and name structure, with a live availability check. Free, no API key needed.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "description": "The Roblox username to rate"
+          }
+        },
+        "required": [
+          "username"
+        ],
+        "$schema": "http://json-schema.org/draft-07/schema#"
+      },
+      "execution": {
+        "taskSupport": "forbidden"
+      }
+    }
+  ],
+  "version": "1.1.1",
+  "icon": "🎯"
+}
