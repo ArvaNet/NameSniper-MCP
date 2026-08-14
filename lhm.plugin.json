@@ -5,7 +5,7 @@
   "description": "Monitor taken usernames and get alerted the moment they free up or drop, check handle and domain availability across the major social platforms and TLDs, and screen names for trademark conflicts.",
   "homepage": "https://namesniper.pro",
   "identifier": "arvanet-namesniper-mcp",
-  "name": "NameSniper",
+  "name": "NameSniper - Username & Domain Monitoring",
   "prompts": [],
   "resources": [
     {
