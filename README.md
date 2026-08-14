@@ -4,6 +4,7 @@
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE)
 [![Node](https://img.shields.io/badge/node-%3E%3D22-brightgreen.svg)](https://nodejs.org)
 [![Model Context Protocol](https://img.shields.io/badge/MCP-server-blue.svg)](https://modelcontextprotocol.io)
+[![ArvaNet/NameSniper-MCP MCP server](https://glama.ai/mcp/servers/ArvaNet/NameSniper-MCP/badges/score.svg)](https://glama.ai/mcp/servers/ArvaNet/NameSniper-MCP)
 
 NameSniper monitors taken usernames and alerts you the moment one frees up or drops, so you can claim a handle before anyone else. It also checks live handle availability across all the major social platforms, checks domains across popular TLDs, and screens names for trademark conflicts. All from your AI client - Claude, Cursor, or any MCP host.
 
@@ -74,6 +75,7 @@ Config file locations:
 | `namesniper_trademark` | USPTO trademark conflict screening | Required |
 | `namesniper_watch` | Start monitoring a handle and get notified when it frees up | Required |
 | `namesniper_watches` | List monitored handles and their status | Required |
+| `namesniper_unwatch` | Stop monitoring a handle and free up the watch slot | Required |
 
 Unauthenticated calls are rate limited. Provide an API key for higher limits and the paid tools.
 
